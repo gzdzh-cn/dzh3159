@@ -191,7 +191,6 @@ export function getBrowser() {
 	const isMobile = isPC ? false : true;
 
 	// 是否移动端 + 屏幕宽过小
-	// const isMini = screen === "xs" || isMobile;
 	const isMini = screen === "xs" || isMobile;
 
 	return {

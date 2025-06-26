@@ -7,8 +7,9 @@
 			:class="{
 				unfold: !app.isFold
 			}"
+			@click="app.fold()"
 		>
-			<el-icon><operation /></el-icon>
+			<el-icon><Operation /></el-icon>
 		</div>
 
 		<!-- 路由导航 -->

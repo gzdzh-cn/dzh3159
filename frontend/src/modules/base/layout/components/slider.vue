@@ -2,7 +2,7 @@
 	<div class="app-slider">
 		<div class="app-slider__logo" @click="toHome">
 			<img class="avatar" :src="logo" alt="Logo" />
-			<span v-if="!app.isFold || browser.isMini">{{ siteName }}{{ app.isFold }}</span>
+			<span v-if="!app.isFold || browser.isMini">{{ siteName }}</span>
 		</div>
 
 		<div class="app-slider__container">

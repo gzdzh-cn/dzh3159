@@ -4,12 +4,11 @@
 
 		<div class="login-container">
 			<div class="img">
-				<login-left />
+				<LoginLeft />
 			</div>
 
 			<div class="login-box">
 				<div class="login-form">
-					<!-- <span>{{ logSrc }}</span> -->
 					<img class="avatar" :src="logo" alt="Logo" />
 
 					<h2 class="outline-none">
@@ -142,7 +141,6 @@ import Captcha from "./components/captcha.vue";
 import { User, Lock, Key, Iphone } from "@element-plus/icons-vue";
 import LoginLeft from "./svg/login-left.vue";
 import { request } from "/@/cool/service/request";
-import { Greet, GetConfig } from "../../../../../wailsjs/go/main/App";
 
 const { refs, setRefs, router, service } = useCool();
 const { user, app, setting } = useBase();
@@ -165,16 +163,6 @@ const operates = [
 	// 	type: "mobile"
 	// }
 ];
-
-// const logPath = ref("");
-// function greet() {
-// 	Greet("admin").then((result) => {
-// 		form.username = result;
-// 	});
-// 	GetConfig().then((result) => {
-// 		logPath.value = result;
-// 	});
-// }
 
 // 切换模式
 const loginM = ref("account");
