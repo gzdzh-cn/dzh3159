@@ -28,7 +28,7 @@ data/logs
 other
 resource/
 node_modules/
-
+*.zip
 
 # 忽略 addons 目录下的所有内容
 addons/*
