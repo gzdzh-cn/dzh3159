@@ -5,14 +5,19 @@ import (
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gcmd"
+	"github.com/gzdzh-cn/dzhcore"
+
+	// "github.com/gzdzh-cn/dzhcore/contrib/drivers/mysql"
+	// "github.com/gzdzh-cn/dzhcore/contrib/drivers/sqlite"
+	_ "github.com/gogf/gf/contrib/drivers/sqlite/v2"
+	"github.com/gzdzh-cn/dzhcore/contrib/files/local"
 
 	"dzhgo/addons"
 	"dzhgo/internal"
-	_ "dzhgo/internal/logic"
-	_ "dzhgo/internal/packed"
 
-	"github.com/gzdzh-cn/dzhcore"
-	"github.com/gzdzh-cn/dzhcore/contrib/drivers/sqlite"
+	_ "dzhgo/internal/logic"
+
+	_ "dzhgo/internal/packed"
 
 	_ "github.com/gogf/gf/contrib/nosql/redis/v2"
 )
@@ -26,13 +31,14 @@ var (
 
 			//初始化数据库
 			// mysql.NewInit()
-			sqlite.NewInit()
+			// sqlite.NewInit()
 			// 初始化本地文件上传驱动
-			// local.NewInit()
+			local.NewInit()
 			// 初始化 oss上传驱动
 			// oss.NewInit()
 			//dzhcore 核心加载
 			dzhcore.NewInit()
+
 			// 初始化internale数据
 			internal.NewInit()
 			// 初始化addons

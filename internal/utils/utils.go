@@ -71,7 +71,9 @@ func StdOutLog(ctx context.Context, startTime time.Time, memStatsStart runtime.M
 		ctxId       = gctx.CtxId(r.GetCtx()) //获取当前请求的ctxid
 		elapsedTime = time.Since(startTime)  // 请求处理时间
 		outLogger_  *defineType.OutputsForLogger
+
 		memStatsEnd runtime.MemStats // 记录结束内存状态
+
 	)
 
 	// 根据处理时间计算吞吐率

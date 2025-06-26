@@ -29,6 +29,8 @@ other
 resource/
 node_modules/
 *.zip
+.DS_Store
+.env
 
 # 忽略 addons 目录下的所有内容
 addons/*
