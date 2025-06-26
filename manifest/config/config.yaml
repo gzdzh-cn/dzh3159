@@ -3,7 +3,7 @@ server:
   openapiPath: "/api.json"
   swaggerPath: "/swagger"
   #  dumpRouterMap: false #关闭路由打印
-  # serverRoot: "resource/public"
+  serverRoot: "resource/public"
   clientMaxBodySize: 104857600  # 100MB in bytes 100*1024*1024
   # paths: ["template"]
   # defaultFile: "index.html"
