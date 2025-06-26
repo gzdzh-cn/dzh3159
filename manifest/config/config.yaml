@@ -5,24 +5,24 @@ server:
   #  dumpRouterMap: false #关闭路由打印
   serverRoot: "resource/public"
   clientMaxBodySize: 104857600  # 100MB in bytes 100*1024*1024
-  paths: ["template"]
-  defaultFile: "index.html"
-  delimiters: ["{{", "}}"]
+  # paths: ["template"]
+  # defaultFile: "index.html"
+  # delimiters: ["{{", "}}"]
 
-logger:
-  path: "./data/logs/"
-  file: "{Y-m-d}.log"
-  level : "all"
-  stdout: true,
-  flags: 44
+# logger:
+#   path: "./data/logs/"
+#   file: "{Y-m-d}.log"
+#   level : "all"
+#   stdout: true,
+#   flags: 44
 
 
 database:
-  logger:
-    path: "./data/logs/sql"
-    file: "sql-{Y-m-d}.log"
-    level: "all"
-    stdout: true # 控制台打印sql
+  # logger:
+  #   path: "./data/logs/sql"
+  #   file: "sql-{Y-m-d}.log"
+  #   level: "all"
+  #   stdout: true # 控制台打印sql
   # default:
   #   # link: "mysql:root:dzh123456@tcp(127.0.0.1:3306)/dzhgo_go?loc=Local&parseTime=true&charset=utf8mb4"
   #   type: "mysql"
