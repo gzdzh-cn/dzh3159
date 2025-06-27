@@ -1,3 +1,11 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+/frontend/stats.html
+/frontend/build/cool/temp
+
 .buildpath
 .hgignore.swp
 .project
