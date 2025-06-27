@@ -50,7 +50,7 @@ func RunLog(r *ghttp.Request) {
 
 	r.Middleware.Next()
 	runLogger := &defineType.RunLogger{
-		Path:       util.GetLoggerPath(config.Cfg.IsProd, config.AppName) + "run/",
+		Path:       util.GetLoggerPath(config.Cfg.IsProd, config.AppName) + "/run/",
 		File:       g.Cfg().MustGet(ctx, "modules.base.middleware.runLogger.file").String(),
 		RotateSize: g.Cfg().MustGet(ctx, "modules.base.middleware.runLogger.rotateSize").String(),
 		Stdout:     g.Cfg().MustGet(ctx, "modules.base.middleware.runLogger.stdout").Bool(),
