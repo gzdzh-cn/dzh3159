@@ -2,12 +2,11 @@
 	"name": "front-next",
 	"version": "5.12.3",
 	"scripts": {
-		"dev": "vite --host",
-		"build": "vite build",
-		"serve": "vite preview",
-		"lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
-		"lint:eslint": "eslint \"{src,mock}/**/*.{vue,ts,tsx}\" --fix"
-	},
+		"dev": "vite",
+		"build:dev": "vite build --minify false --mode development",
+		"build": "vite build --mode production",
+		"preview": "vite preview"
+	  },
 	"dependencies": {
 		"@cool-vue/crud": "^6.0.3",
 		"@element-plus/icons-vue": "^2.0.10",
@@ -38,6 +37,7 @@
 		"xlsx": "^0.18.5"
 	},
 	"devDependencies": {
+		"@wailsio/runtime": "latest",
 		"@types/lodash-es": "^4.17.6",
 		"@types/mockjs": "^1.0.6",
 		"@types/node": "^18.0.6",

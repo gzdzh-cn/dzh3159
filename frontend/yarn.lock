@@ -2112,6 +2112,11 @@
   dependencies:
     vue-demi "*"
 
+"@wailsio/runtime@latest":
+  version "3.0.0-alpha.66"
+  resolved "https://registry.npmmirror.com/@wailsio/runtime/-/runtime-3.0.0-alpha.66.tgz#d725de6eca28f42f787a4c165c9d95c413481265"
+  integrity sha512-ENLu8rn1griL1gFHJqkq1i+BVxrrA0JPJHYneUJYuf/s54kjuQViW0RKDEe/WTDo56ABpfykrd/T8OYpPUyXUw==
+
 "@wangeditor/basic-modules@^1.1.7":
   version "1.1.7"
   resolved "https://registry.npmjs.org/@wangeditor/basic-modules/-/basic-modules-1.1.7.tgz#a9c3ccf4ef53332f29550d59d3676e15f395946f"

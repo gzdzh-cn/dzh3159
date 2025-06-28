@@ -2,13 +2,6 @@ package main
 
 import (
 	"context"
-	"dzhgo/internal/cmd"
-	"dzhgo/internal/log"
-	"dzhgo/internal/model"
-
-	"dzhgo/internal/config"
-
-	"github.com/gzdzh-cn/dzhcore/utility/util"
 
 	"fmt"
 
@@ -16,7 +9,7 @@ import (
 )
 
 var (
-	Logger = log.NewRunLogger()
+// Logger = log.NewRunLogger()
 )
 
 // App struct
@@ -33,7 +26,6 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) Startup(ctx context.Context) {
 	a.ctx = ctx
-	go cmd.Main.Run(ctx)
 
 }
 
@@ -46,16 +38,16 @@ func (a *App) Greet(p string) string {
 	// 使用 GoFrame 上下文
 	// ctx := gctx.New()
 	// 记录日志
-	Logger.Info(fmt.Sprintf("Greeting %s", p))
+	// Logger.Info(fmt.Sprintf("Greeting %s", p))
 	return fmt.Sprintf("Hello %s!", p)
 }
 
-func (a *App) GetConfig() string {
-	var baseSysSetting = &model.BaseSysSetting{}
-	g.DB().Model("base_sys_setting").Where("id", 1).Scan(&baseSysSetting)
-	// g.Log().Debugf(a.ctx, "GetConfig: %v", config)
-	Logger.Info(fmt.Sprintf("GetConfig: %v", baseSysSetting))
-	logPath := util.GetLoggerPath(config.Cfg.IsProd, config.AppName)
+// func (a *App) GetConfig() string {
+// 	var baseSysSetting = &model.BaseSysSetting{}
+// 	g.DB().Model("base_sys_setting").Where("id", 1).Scan(&baseSysSetting)
+// 	// g.Log().Debugf(a.ctx, "GetConfig: %v", config)
+// 	Logger.Info(fmt.Sprintf("GetConfig: %v", baseSysSetting))
+// 	logPath := util.GetLoggerPath(config.Cfg.IsProd, config.AppName)
 
-	return fmt.Sprintf("Hello %v,logPath:%s,isProd:%v!", baseSysSetting.ID, logPath, config.Cfg.IsProd)
-}
+// 	return fmt.Sprintf("Hello %v,logPath:%s,isProd:%v!", baseSysSetting.ID, logPath, config.Cfg.IsProd)
+// }
