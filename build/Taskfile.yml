@@ -76,3 +76,18 @@ tasks:
     dir: build
     cmds:
       - wails3 update build-assets -name "{{.APP_NAME}}" -binaryname "{{.APP_NAME}}" -config config.yml -dir .
+
+  dmg:
+    summary: Creates a DMG disk image for macOS distribution
+    deps:
+      - task: darwin:dmg
+
+  dmg:amd64:
+    summary: Creates a DMG disk image for macOS amd64 distribution
+    deps:
+      - task: darwin:dmg:amd64
+
+  dmg:universal:
+    summary: Creates a DMG disk image for macOS universal binary distribution
+    deps:
+      - task: darwin:dmg:universal

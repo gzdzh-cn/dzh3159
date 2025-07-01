@@ -14,7 +14,8 @@ tasks:
       - go build {{.BUILD_FLAGS}} -o {{.OUTPUT}}
     vars:
       # BUILD_FLAGS: '{{if eq .PRODUCTION "true"}}-tags production -trimpath -buildvcs=false -ldflags="-w -s"{{else}}-buildvcs=false -gcflags=all="-l"{{end}}'
-      BUILD_FLAGS: '{{if eq .PRODUCTION "true"}}-tags production -buildvcs=false -ldflags="-w -s"{{else}}-buildvcs=false -gcflags=all="-l"{{end}}'
+      # BUILD_FLAGS: '{{if eq .PRODUCTION "true"}}-tags production -buildvcs=false -ldflags="-w -s"{{else}}-buildvcs=false -gcflags=all="-l"{{end}}'
+      BUILD_FLAGS: '{{if eq .PRODUCTION "true"}}-tags production,sqlite_omit_load_extension -buildvcs=false -ldflags="-w -s"{{else}}-tags sqlite_omit_load_extension -buildvcs=false -gcflags=all="-l"{{end}}'
       DEFAULT_OUTPUT: '{{.BIN_DIR}}/{{.APP_NAME}}'
       OUTPUT: '{{ .OUTPUT | default .DEFAULT_OUTPUT }}'
     env:
@@ -33,6 +34,7 @@ tasks:
         vars:
           ARCH: amd64
           OUTPUT: "{{.BIN_DIR}}/{{.APP_NAME}}-amd64"
+          PRODUCTION: "true"
 
   build:universal:
     summary: Builds darwin universal binary (arm64 + amd64)
@@ -90,7 +92,53 @@ tasks:
       - cp build/darwin/icons.icns {{.BIN_DIR}}/{{.APP_NAME}}-amd64.app/Contents/Resources
       - cp {{.BIN_DIR}}/{{.APP_NAME}}-amd64 {{.BIN_DIR}}/{{.APP_NAME}}-amd64.app/Contents/MacOS
       - cp build/darwin/Info.plist {{.BIN_DIR}}/{{.APP_NAME}}-amd64.app/Contents
+      - sed -i '' 's/<string>dzh3159<\/string>/<string>dzh3159-amd64<\/string>/' {{.BIN_DIR}}/{{.APP_NAME}}-amd64.app/Contents/Info.plist
 
   run:
     cmds:
       - '{{.BIN_DIR}}/{{.APP_NAME}}'
+
+  dmg:
+    summary: Creates a DMG disk image for distribution
+    deps:
+      - task: package
+        vars:
+          PRODUCTION: "true"
+    cmds:
+      - task: create:dmg:default
+
+  dmg:amd64:
+    summary: Creates a DMG disk image for amd64 distribution
+    deps:
+      - task: package:amd64
+        vars:
+          PRODUCTION: "true"
+    cmds:
+      - task: create:dmg:amd64
+
+  dmg:universal:
+    summary: Creates a DMG disk image for universal binary distribution
+    deps:
+      - task: package:universal
+    cmds:
+      - task: create:dmg:universal
+
+  create:dmg:default:
+    summary: Creates a DMG disk image (default)
+    cmds:
+      - ./build/darwin/create_dmg.sh {{.APP_NAME}} {{.VERSION | default "1.0.0"}} default
+
+  create:dmg:
+    summary: Creates a DMG disk image
+    cmds:
+      - ./build/darwin/create_dmg.sh {{.APP_NAME}} {{.VERSION | default "1.0.0"}} universal
+
+  create:dmg:amd64:
+    summary: Creates a DMG disk image for amd64
+    cmds:
+      - ./build/darwin/create_dmg.sh {{.APP_NAME}} {{.VERSION | default "1.0.0"}} amd64
+
+  create:dmg:universal:
+    summary: Creates a DMG disk image for universal
+    cmds:
+      - ./build/darwin/create_dmg.sh {{.APP_NAME}} {{.VERSION | default "1.0.0"}} universal

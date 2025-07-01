@@ -2,14 +2,17 @@ package main
 
 import (
 	"dzhgo/internal/cmd"
+
+	_ "dzhgo/internal/packed"
+
 	"embed"
 	_ "embed"
 
-	"log"
-	"time"
+	"github.com/gzdzh-cn/dzhcore/log"
 
-	"github.com/gogf/gf/os/gctx"
+	"github.com/gogf/gf/v2/os/gctx"
 	"github.com/wailsapp/wails/v3/pkg/application"
+	"github.com/wailsapp/wails/v3/pkg/events"
 )
 
 // Wails 使用 Go 的 `embed` 包将前端文件嵌入到二进制文件中。
@@ -19,11 +22,17 @@ import (
 
 //go:embed all:frontend/dist
 var assets embed.FS
+var ctx = gctx.New()
 
 // main 函数作为应用程序的入口点。它初始化应用程序，创建窗口，
 // 并启动一个每秒发出基于时间事件的 goroutine。随后运行应用程序，
 // 并记录可能发生的任何错误。
 func main() {
+
+	// 日志记录器
+	log.SetLogger()
+
+	// gres.Dump()
 
 	// 通过提供必要的选项创建一个新的 Wails 应用程序。
 	// 变量 'Name' 和 'Description' 用于应用程序元数据。
@@ -44,6 +53,10 @@ func main() {
 		},
 	})
 
+	app.OnApplicationEvent(events.Common.ApplicationStarted, func(event *application.ApplicationEvent) {
+		app.Logger.Info("Application started!")
+	})
+
 	// 使用必要的选项创建一个新窗口。
 	// 'Title' 是窗口标题。
 	// 'Mac' 选项用于在 macOS 上运行时定制窗口。
@@ -62,21 +75,17 @@ func main() {
 		Height:           768,
 	})
 
-	// 启动一个 goroutine，每秒发出包含当前时间的事件。
-	// 前端可以监听该事件并相应地更新 UI。
-	go func() {
-		for {
-			now := time.Now().Format(time.RFC1123)
-			app.EmitEvent("time", now)
-			time.Sleep(time.Second)
-		}
-	}()
-	go cmd.Main.Run(gctx.New())
+	env := app.Environment()
+	log.RunLogger.Infof(ctx, "env: %+v", env)
+
+	// 启动 goframe 服务
+	go cmd.Main.Run(ctx)
+
 	// 运行应用程序。该操作会阻塞，直到应用程序退出。
 	err := app.Run()
 
 	// 如果运行应用程序时发生错误，则记录错误并退出。
 	if err != nil {
-		log.Fatal(err)
+		log.RunLogger.Fatalf(ctx, "run app error: %s", err)
 	}
 }

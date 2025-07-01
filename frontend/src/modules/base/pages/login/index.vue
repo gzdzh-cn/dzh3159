@@ -50,7 +50,7 @@
 									:prefix-icon="Key"
 									@keyup.enter="toLogin"
 								>
-									<template v-slot:append>
+									<template #append>
 										<captcha
 											:ref="setRefs('captcha')"
 											v-model="form.captchaId"

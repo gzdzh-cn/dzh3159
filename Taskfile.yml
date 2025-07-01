@@ -32,3 +32,18 @@ tasks:
     cmds:
       - wails3 dev -config ./build/config.yml -port {{.VITE_PORT}}
 
+  dmg:
+    summary: Creates a DMG disk image for macOS distribution
+    cmds:
+      - task: darwin:dmg
+
+  dmg:amd64:
+    summary: Creates a DMG disk image for macOS amd64 distribution
+    cmds:
+      - task: darwin:dmg:amd64
+
+  dmg:universal:
+    summary: Creates a DMG disk image for macOS universal binary distribution
+    cmds:
+      - task: darwin:dmg:universal
+

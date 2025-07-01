@@ -7,9 +7,11 @@ import (
 	"github.com/gogf/gf/v2/os/gcmd"
 	"github.com/gzdzh-cn/dzhcore"
 
-	// "github.com/gzdzh-cn/dzhcore/contrib/drivers/mysql"
-	// "github.com/gzdzh-cn/dzhcore/contrib/drivers/sqlite"
+	// _ "github.com/gzdzh-cn/dzhcore/contrib/drivers/mysql"
+	// _ "github.com/gzdzh-cn/dzhcore/contrib/drivers/sqlite"
+
 	_ "github.com/gogf/gf/contrib/drivers/sqlite/v2"
+	_ "github.com/gzdzh-cn/dzhcore/contrib/files/local"
 
 	"dzhgo/addons"
 	"dzhgo/internal"
@@ -27,17 +29,11 @@ var (
 		Usage: "main",
 		Brief: "start http server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
+			// 日志记录器
+			// log.SetLogger()
 
-			//初始化数据库
-			// mysql.NewInit()
-			// sqlite.NewInit()
-			// 初始化本地文件上传驱动
-			// local.NewInit()
-			// 初始化 oss上传驱动
-			// oss.NewInit()
 			//dzhcore 核心加载
 			dzhcore.NewInit()
-
 			// 初始化internale数据
 			internal.NewInit()
 			// 初始化addons

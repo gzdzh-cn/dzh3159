@@ -51,3 +51,7 @@ func (a *App) Greet(p string) string {
 
 // 	return fmt.Sprintf("Hello %v,logPath:%s,isProd:%v!", baseSysSetting.ID, logPath, config.Cfg.IsProd)
 // }
+
+func (a *App) GetName() string {
+	return "dzhgo"
+}

@@ -13,18 +13,15 @@ var (
 
 // sConfig 配置
 type sConfig struct {
-	IsProd     bool
 	Jwt        *Jwt
 	Middleware *Middleware
 	Setting    *g.Map
-	//WxConfig   *defineType.WxConfig
 }
 
 type Middleware struct {
 	Cors      bool
 	Authority *Authority
 	Log       *Log
-	RunLogger *RunLogger
 }
 
 type Authority struct {
@@ -32,9 +29,6 @@ type Authority struct {
 }
 
 type Log struct {
-	Enable bool
-}
-type RunLogger struct {
 	Enable bool
 }
 
@@ -52,7 +46,6 @@ type Jwt struct {
 func NewConfig() *sConfig {
 
 	return &sConfig{
-		IsProd: dzhcore.GetCfgWithDefault(ctx, "modules.base.isProd", g.NewVar(false)).Bool(),
 		Jwt: &Jwt{
 			Sso:    dzhcore.GetCfgWithDefault(ctx, "modules.base.jwt.sso", g.NewVar(false)).Bool(),
 			Secret: dzhcore.GetCfgWithDefault(ctx, "modules.base.jwt.secret", g.NewVar(dzhcore.ProcessFlag)).String(),
@@ -68,9 +61,6 @@ func NewConfig() *sConfig {
 			},
 			Log: &Log{
 				Enable: dzhcore.GetCfgWithDefault(ctx, "modules.base.middleware.log.enable", g.NewVar(true)).Bool(),
-			},
-			RunLogger: &RunLogger{
-				Enable: dzhcore.GetCfgWithDefault(ctx, "modules.base.middleware.runLogger.enable", g.NewVar(false)).Bool(),
 			},
 		},
 		Setting: &g.Map{
