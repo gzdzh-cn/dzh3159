@@ -133,21 +133,20 @@
 </template>
 
 <script lang="ts" name="login" setup>
-import { onMounted, reactive, ref, toRaw } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import { ElMessage } from "element-plus";
 import { useCool } from "/@/cool";
 import { useBase } from "/$/base";
 import Captcha from "./components/captcha.vue";
 import { User, Lock, Key, Iphone } from "@element-plus/icons-vue";
 import LoginLeft from "./svg/login-left.vue";
-import { request } from "/@/cool/service/request";
 
 const { refs, setRefs, router, service } = useCool();
 const { user, app, setting } = useBase();
 
-const logo = ref(setting.setting.logo || app.info.logo);
-const siteName = ref(setting.setting.siteName || app.info.name);
-const copyright = ref(setting.setting.copyright);
+const logo = ref(setting.setting?.logo || app.info?.logo || "/logo.png");
+const siteName = ref(setting.setting?.siteName || app.info?.name || "管理系统");
+const copyright = ref(setting.setting?.copyright || "");
 
 const currentPage = ref(0);
 const disabled = ref(false);

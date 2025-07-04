@@ -1,4 +1,4 @@
-import { ModuleConfig, config, useCool } from "/@/cool";
+import { ModuleConfig, config } from "/@/cool";
 import { useStore } from "./store";
 
 import "./static/css/index.scss";
@@ -74,9 +74,15 @@ export default (): ModuleConfig => {
 
 			// 设置logo
 			if (res.value?.logo) {
-				document.querySelector("link[rel='icon']").href = res.value?.logo;
+				const link = document.querySelector("link[rel='icon']") as HTMLLinkElement;
+				if (link) {
+					link.href = res.value?.logo;
+				}
 			} else {
-				document.querySelector("link[rel='icon']").href = config.app.logo;
+				const link = document.querySelector("link[rel='icon']") as HTMLLinkElement;
+				if (link) {
+					link.href = config.app.logo;
+				}
 			}
 
 			// token 事件

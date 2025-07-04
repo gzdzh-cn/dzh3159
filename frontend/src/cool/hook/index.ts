@@ -5,8 +5,9 @@ import { service } from "../service";
 import { Data } from "../utils";
 import { useBrowser } from "./browser";
 
-export function useService(): Eps.Service {
-	return Data.get("service" || service);
+export function useService(): any {
+	const serviceData = Data.get("service");
+	return serviceData || service;
 }
 
 export function useRefs() {

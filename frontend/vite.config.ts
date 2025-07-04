@@ -18,7 +18,7 @@ export default (): UserConfig => {
 		base: "./",
 		plugins: [
 			vue(),
-			compression(),
+			// compression(),
 			vueJsx(),
 			cool(),
 			visualizer({

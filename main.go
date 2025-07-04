@@ -1,21 +1,29 @@
 package main
 
 import (
+	_ "dzhgo/internal/packed"
+
 	"embed"
 
 	"dzhgo/internal/config"
-	"dzhgo/internal/log"
 
+	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/os/gctx"
 	"github.com/wailsapp/wails/v2"
-	"github.com/wailsapp/wails/v2/pkg/logger"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 )
 
 //go:embed all:frontend/dist
 var assets embed.FS
+var ctx = gctx.New()
 
 func main() {
+
+	// gres.Dump()
+	gs := NewGreetService(ctx)
+	gs.SetLogger()
+
 	// Create an instance of the app structure
 	app := NewApp()
 
@@ -27,11 +35,9 @@ func main() {
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
-		BackgroundColour:   &options.RGBA{R: 27, G: 38, B: 54, A: 1},
-		Logger:             log.NewRunLogger(),
-		LogLevel:           logger.DEBUG,
-		LogLevelProduction: logger.DEBUG,
-		OnStartup:          app.Startup,
+		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
+
+		OnStartup: app.Startup,
 		Bind: []interface{}{
 			app,
 		},
@@ -39,6 +45,6 @@ func main() {
 
 	if err != nil {
 		println("Error:", err.Error())
-		log.NewRunLogger().Error(err.Error())
+		g.Log().Error(ctx, err.Error())
 	}
 }
