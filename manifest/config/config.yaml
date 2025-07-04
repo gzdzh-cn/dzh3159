@@ -48,7 +48,7 @@ redis:
 core:
   appName: "dzhgo" # 桌面端使用，给生产环境时，生成日志路径使用，macos会在系统 /Users/****/Library/Application Support/ 目录下建一个 dzhgo 目录
   isDesktop: true # 桌面端运行
-  isProd: true # 桌面端才设置指定是否是生产模式，生产模式的日志路径为系统目录，下面日志的路径参数在生产模式下会失效
+  isProd: false # 桌面端才设置指定是否是生产模式，生产模式的日志路径为系统目录，下面日志的路径参数在生产模式下会失效
   autoMigrate: true #自动建表
   eps: true # 生成前端请求路由
   # gf 自带数据库日志配置

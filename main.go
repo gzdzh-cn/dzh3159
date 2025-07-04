@@ -8,8 +8,7 @@ import (
 	"github.com/gogf/gf/v2/os/gctx"
 	"github.com/wailsapp/wails/v3/pkg/application"
 	"github.com/wailsapp/wails/v3/pkg/events"
-
-	_ "dzhgo/packed"
+	// _ "dzhgo/packed"
 )
 
 // Wails 使用 Go 的 `embed` 包将前端文件嵌入到二进制文件中。
@@ -51,7 +50,7 @@ func main() {
 	})
 
 	app.OnApplicationEvent(events.Common.ApplicationStarted, func(event *application.ApplicationEvent) {
-		app.Logger.Info("Application started!!")
+		// app.Logger.Info("Application started!!")
 		g.Log().Info(ctx, "Application started!!")
 	})
 
@@ -83,7 +82,7 @@ func main() {
 
 	// 如果运行应用程序时发生错误，则记录错误并退出。
 	if err != nil {
-		app.Logger.Error("run app error: %s", err.Error())
+		// app.Logger.Error("run app error: %s", err.Error())
 		g.Log().Fatalf(ctx, "run app error: %s", err)
 	}
 }
