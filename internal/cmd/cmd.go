@@ -35,7 +35,6 @@ var (
 			}
 
 			s := g.Server()
-			s.AddStaticPath("/dzhimg/public", "/public")
 			s.Run()
 
 			return nil

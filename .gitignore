@@ -49,7 +49,7 @@ manifest/config/config-crm.yaml
 !addons/task/
 !addons/member/
 
-data/log/
+data
 data/logs/
 frontend/dist/
 frontend/node_modules/

@@ -11,7 +11,7 @@ require (
 	github.com/gogf/gf/contrib/nosql/redis/v2 v2.9.0
 	github.com/gogf/gf/v2 v2.9.0
 	github.com/golang-jwt/jwt/v4 v4.5.0
-	github.com/gzdzh-cn/dzhcore v1.2.9
+	github.com/gzdzh-cn/dzhcore v1.3.0
 	github.com/robfig/cron v1.2.0
 	github.com/shopspring/decimal v1.4.0
 	github.com/wailsapp/wails/v2 v2.9.3
